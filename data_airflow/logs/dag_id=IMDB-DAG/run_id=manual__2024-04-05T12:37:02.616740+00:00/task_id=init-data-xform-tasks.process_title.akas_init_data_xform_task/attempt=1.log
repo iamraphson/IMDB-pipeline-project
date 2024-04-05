@@ -1,0 +1,18 @@
+[2024-04-05T12:38:54.235+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: IMDB-DAG.init-data-xform-tasks.process_title.akas_init_data_xform_task manual__2024-04-05T12:37:02.616740+00:00 [queued]>
+[2024-04-05T12:38:54.279+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: IMDB-DAG.init-data-xform-tasks.process_title.akas_init_data_xform_task manual__2024-04-05T12:37:02.616740+00:00 [queued]>
+[2024-04-05T12:38:54.282+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2024-04-05T12:38:54.308+0000] {taskinstance.py:2217} INFO - Executing <Task(DataprocSubmitJobOperator): init-data-xform-tasks.process_title.akas_init_data_xform_task> on 2024-04-05 12:37:02.616740+00:00
+[2024-04-05T12:38:54.324+0000] {standard_task_runner.py:60} INFO - Started process 245 to run task
+[2024-04-05T12:38:54.387+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'IMDB-DAG', 'init-data-xform-tasks.process_title.akas_init_data_xform_task', 'manual__2024-04-05T12:37:02.616740+00:00', '--job-id', '172', '--raw', '--subdir', 'DAGS_FOLDER/imdb_dab.py', '--cfg-path', '/tmp/tmp7z6jrify']
+[2024-04-05T12:38:54.420+0000] {standard_task_runner.py:88} INFO - Job 172: Subtask init-data-xform-tasks.process_title.akas_init_data_xform_task
+[2024-04-05T12:38:54.662+0000] {task_command.py:423} INFO - Running <TaskInstance: IMDB-DAG.init-data-xform-tasks.process_title.akas_init_data_xform_task manual__2024-04-05T12:37:02.616740+00:00 [running]> on host 77371722413f
+[2024-04-05T12:38:54.799+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='iamraphson' AIRFLOW_CTX_DAG_ID='IMDB-DAG' AIRFLOW_CTX_TASK_ID='init-data-xform-tasks.process_title.akas_init_data_xform_task' AIRFLOW_CTX_EXECUTION_DATE='2024-04-05T12:37:02.616740+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-05T12:37:02.616740+00:00'
+[2024-04-05T12:38:54.802+0000] {dataproc.py:2550} INFO - Submitting job
+[2024-04-05T12:38:54.810+0000] {connection.py:269} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-04-05T12:38:54.812+0000] {base.py:83} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2024-04-05T12:39:00.522+0000] {dataproc.py:2562} INFO - Job ac756a15-1030-4733-978c-3ea23b309786 submitted successfully.
+[2024-04-05T12:39:00.573+0000] {dataproc.py:2596} INFO - Waiting for job ac756a15-1030-4733-978c-3ea23b309786 to complete
+[2024-04-05T12:45:39.668+0000] {dataproc.py:2600} INFO - Job ac756a15-1030-4733-978c-3ea23b309786 completed successfully.
+[2024-04-05T12:45:39.714+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=IMDB-DAG, task_id=init-data-xform-tasks.process_title.akas_init_data_xform_task, execution_date=20240405T123702, start_date=20240405T123854, end_date=20240405T124539
+[2024-04-05T12:45:39.790+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-04-05T12:45:39.811+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

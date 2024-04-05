@@ -1,0 +1,18 @@
+[2024-04-05T13:01:53.839+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: IMDB-DAG.facts_dim_step_1_creations_tasks manual__2024-04-05T12:52:28.681685+00:00 [queued]>
+[2024-04-05T13:01:53.844+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: IMDB-DAG.facts_dim_step_1_creations_tasks manual__2024-04-05T12:52:28.681685+00:00 [queued]>
+[2024-04-05T13:01:53.845+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2024-04-05T13:01:53.851+0000] {taskinstance.py:2217} INFO - Executing <Task(DataprocSubmitJobOperator): facts_dim_step_1_creations_tasks> on 2024-04-05 12:52:28.681685+00:00
+[2024-04-05T13:01:53.855+0000] {standard_task_runner.py:60} INFO - Started process 6587 to run task
+[2024-04-05T13:01:53.857+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'IMDB-DAG', 'facts_dim_step_1_creations_tasks', 'manual__2024-04-05T12:52:28.681685+00:00', '--job-id', '193', '--raw', '--subdir', 'DAGS_FOLDER/imdb_dab.py', '--cfg-path', '/tmp/tmpzip2knvh']
+[2024-04-05T13:01:53.859+0000] {standard_task_runner.py:88} INFO - Job 193: Subtask facts_dim_step_1_creations_tasks
+[2024-04-05T13:01:53.885+0000] {task_command.py:423} INFO - Running <TaskInstance: IMDB-DAG.facts_dim_step_1_creations_tasks manual__2024-04-05T12:52:28.681685+00:00 [running]> on host 77371722413f
+[2024-04-05T13:01:53.926+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='iamraphson' AIRFLOW_CTX_DAG_ID='IMDB-DAG' AIRFLOW_CTX_TASK_ID='facts_dim_step_1_creations_tasks' AIRFLOW_CTX_EXECUTION_DATE='2024-04-05T12:52:28.681685+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-05T12:52:28.681685+00:00'
+[2024-04-05T13:01:53.927+0000] {dataproc.py:2550} INFO - Submitting job
+[2024-04-05T13:01:53.931+0000] {connection.py:269} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-04-05T13:01:53.932+0000] {base.py:83} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2024-04-05T13:01:54.172+0000] {dataproc.py:2562} INFO - Job f94d8493-3fa3-41b9-9663-548cdb23ad7a submitted successfully.
+[2024-04-05T13:01:54.179+0000] {dataproc.py:2596} INFO - Waiting for job f94d8493-3fa3-41b9-9663-548cdb23ad7a to complete
+[2024-04-05T13:03:36.398+0000] {dataproc.py:2600} INFO - Job f94d8493-3fa3-41b9-9663-548cdb23ad7a completed successfully.
+[2024-04-05T13:03:36.471+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=IMDB-DAG, task_id=facts_dim_step_1_creations_tasks, execution_date=20240405T125228, start_date=20240405T130153, end_date=20240405T130336
+[2024-04-05T13:03:36.636+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-04-05T13:03:36.676+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

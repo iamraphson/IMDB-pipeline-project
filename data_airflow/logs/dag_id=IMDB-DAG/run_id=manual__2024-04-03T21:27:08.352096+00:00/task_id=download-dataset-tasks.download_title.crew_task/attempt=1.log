@@ -1,0 +1,32 @@
+[2024-04-03T21:27:11.694+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: IMDB-DAG.download-dataset-tasks.download_title.crew_task manual__2024-04-03T21:27:08.352096+00:00 [queued]>
+[2024-04-03T21:27:11.709+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: IMDB-DAG.download-dataset-tasks.download_title.crew_task manual__2024-04-03T21:27:08.352096+00:00 [queued]>
+[2024-04-03T21:27:11.713+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2024-04-03T21:27:11.750+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): download-dataset-tasks.download_title.crew_task> on 2024-04-03 21:27:08.352096+00:00
+[2024-04-03T21:27:11.769+0000] {standard_task_runner.py:60} INFO - Started process 3709 to run task
+[2024-04-03T21:27:11.801+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'IMDB-DAG', 'download-dataset-tasks.download_title.crew_task', 'manual__2024-04-03T21:27:08.352096+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/imdb_dab.py', '--cfg-path', '/tmp/tmpxr3on2st']
+[2024-04-03T21:27:11.804+0000] {standard_task_runner.py:88} INFO - Job 43: Subtask download-dataset-tasks.download_title.crew_task
+[2024-04-03T21:27:11.953+0000] {task_command.py:423} INFO - Running <TaskInstance: IMDB-DAG.download-dataset-tasks.download_title.crew_task manual__2024-04-03T21:27:08.352096+00:00 [running]> on host 092193d62c58
+[2024-04-03T21:27:12.129+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='iamraphson' AIRFLOW_CTX_DAG_ID='IMDB-DAG' AIRFLOW_CTX_TASK_ID='download-dataset-tasks.download_title.crew_task' AIRFLOW_CTX_EXECUTION_DATE='2024-04-03T21:27:08.352096+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-03T21:27:08.352096+00:00'
+[2024-04-03T21:27:12.138+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-04-03T21:27:12.144+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'curl -o /opt/***/raws/title.crew.tsv.gz -p https://datasets.imdbws.com/title.crew.tsv.gz']
+[2024-04-03T21:27:12.218+0000] {subprocess.py:86} INFO - Output:
+[2024-04-03T21:27:12.231+0000] {subprocess.py:93} INFO -   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+[2024-04-03T21:27:12.233+0000] {subprocess.py:93} INFO -                                  Dload  Upload   Total   Spent    Left  Speed
+[2024-04-03T21:27:12.426+0000] {subprocess.py:93} INFO -   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0Warning: Failed to open the file /opt/***/raws/title.crew.tsv.gz: No such
+[2024-04-03T21:27:12.429+0000] {subprocess.py:93} INFO - Warning: file or directory
+[2024-04-03T21:27:12.430+0000] {subprocess.py:93} INFO -   0 66.7M    0 16018    0     0  82257      0  0:14:10 --:--:--  0:14:10 82567
+[2024-04-03T21:27:12.432+0000] {subprocess.py:93} INFO - curl: (23) Failure writing output to destination
+[2024-04-03T21:27:12.433+0000] {subprocess.py:97} INFO - Command exited with return code 23
+[2024-04-03T21:27:12.456+0000] {taskinstance.py:2731} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 23.
+[2024-04-03T21:27:12.464+0000] {taskinstance.py:1149} INFO - Marking task as FAILED. dag_id=IMDB-DAG, task_id=download-dataset-tasks.download_title.crew_task, execution_date=20240403T212708, start_date=20240403T212711, end_date=20240403T212712
+[2024-04-03T21:27:12.514+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 43 for task download-dataset-tasks.download_title.crew_task (Bash command failed. The command returned a non-zero exit code 23.; 3709)
+[2024-04-03T21:27:12.571+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-04-03T21:27:12.728+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,21 @@
+[2024-04-05T12:53:14.309+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: IMDB-DAG.upload_dataset_to_gcs_task manual__2024-04-05T12:52:28.681685+00:00 [queued]>
+[2024-04-05T12:53:14.318+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: IMDB-DAG.upload_dataset_to_gcs_task manual__2024-04-05T12:52:28.681685+00:00 [queued]>
+[2024-04-05T12:53:14.318+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2024-04-05T12:53:14.326+0000] {taskinstance.py:2217} INFO - Executing <Task(LocalFilesystemToGCSOperator): upload_dataset_to_gcs_task> on 2024-04-05 12:52:28.681685+00:00
+[2024-04-05T12:53:14.331+0000] {standard_task_runner.py:60} INFO - Started process 3593 to run task
+[2024-04-05T12:53:14.337+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'IMDB-DAG', 'upload_dataset_to_gcs_task', 'manual__2024-04-05T12:52:28.681685+00:00', '--job-id', '184', '--raw', '--subdir', 'DAGS_FOLDER/imdb_dab.py', '--cfg-path', '/tmp/tmpe2z6ceyq']
+[2024-04-05T12:53:14.340+0000] {standard_task_runner.py:88} INFO - Job 184: Subtask upload_dataset_to_gcs_task
+[2024-04-05T12:53:14.379+0000] {task_command.py:423} INFO - Running <TaskInstance: IMDB-DAG.upload_dataset_to_gcs_task manual__2024-04-05T12:52:28.681685+00:00 [running]> on host 77371722413f
+[2024-04-05T12:53:14.425+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='iamraphson' AIRFLOW_CTX_DAG_ID='IMDB-DAG' AIRFLOW_CTX_TASK_ID='upload_dataset_to_gcs_task' AIRFLOW_CTX_EXECUTION_DATE='2024-04-05T12:52:28.681685+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-05T12:52:28.681685+00:00'
+[2024-04-05T12:53:14.430+0000] {connection.py:269} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-04-05T12:53:14.431+0000] {base.py:83} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2024-04-05T12:53:24.094+0000] {gcs.py:557} INFO - File /opt/***/raws/name.basics.tsv.gz uploaded to raws/name.basics.tsv.gz in imdb_datalake_radiant-gateway-412001 bucket
+[2024-04-05T12:53:24.396+0000] {gcs.py:557} INFO - File /opt/***/raws/title.ratings.tsv.gz uploaded to raws/title.ratings.tsv.gz in imdb_datalake_radiant-gateway-412001 bucket
+[2024-04-05T12:53:30.637+0000] {gcs.py:557} INFO - File /opt/***/raws/title.basics.tsv.gz uploaded to raws/title.basics.tsv.gz in imdb_datalake_radiant-gateway-412001 bucket
+[2024-04-05T12:53:33.307+0000] {gcs.py:557} INFO - File /opt/***/raws/title.crew.tsv.gz uploaded to raws/title.crew.tsv.gz in imdb_datalake_radiant-gateway-412001 bucket
+[2024-04-05T12:53:55.737+0000] {gcs.py:557} INFO - File /opt/***/raws/title.principals.tsv.gz uploaded to raws/title.principals.tsv.gz in imdb_datalake_radiant-gateway-412001 bucket
+[2024-04-05T12:54:10.600+0000] {gcs.py:557} INFO - File /opt/***/raws/title.akas.tsv.gz uploaded to raws/title.akas.tsv.gz in imdb_datalake_radiant-gateway-412001 bucket
+[2024-04-05T12:54:12.676+0000] {gcs.py:557} INFO - File /opt/***/raws/title.episode.tsv.gz uploaded to raws/title.episode.tsv.gz in imdb_datalake_radiant-gateway-412001 bucket
+[2024-04-05T12:54:12.706+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=IMDB-DAG, task_id=upload_dataset_to_gcs_task, execution_date=20240405T125228, start_date=20240405T125314, end_date=20240405T125412
+[2024-04-05T12:54:12.800+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-04-05T12:54:12.839+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

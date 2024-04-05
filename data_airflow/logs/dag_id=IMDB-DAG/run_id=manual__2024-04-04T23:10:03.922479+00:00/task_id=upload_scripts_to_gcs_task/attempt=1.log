@@ -1,0 +1,15 @@
+[2024-04-04T23:11:56.645+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: IMDB-DAG.upload_scripts_to_gcs_task manual__2024-04-04T23:10:03.922479+00:00 [queued]>
+[2024-04-04T23:11:56.650+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: IMDB-DAG.upload_scripts_to_gcs_task manual__2024-04-04T23:10:03.922479+00:00 [queued]>
+[2024-04-04T23:11:56.650+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2024-04-04T23:11:56.657+0000] {taskinstance.py:2217} INFO - Executing <Task(LocalFilesystemToGCSOperator): upload_scripts_to_gcs_task> on 2024-04-04 23:10:03.922479+00:00
+[2024-04-04T23:11:56.662+0000] {standard_task_runner.py:60} INFO - Started process 504 to run task
+[2024-04-04T23:11:56.665+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'IMDB-DAG', 'upload_scripts_to_gcs_task', 'manual__2024-04-04T23:10:03.922479+00:00', '--job-id', '109', '--raw', '--subdir', 'DAGS_FOLDER/imdb_dab.py', '--cfg-path', '/tmp/tmpyx212akr']
+[2024-04-04T23:11:56.667+0000] {standard_task_runner.py:88} INFO - Job 109: Subtask upload_scripts_to_gcs_task
+[2024-04-04T23:11:56.708+0000] {task_command.py:423} INFO - Running <TaskInstance: IMDB-DAG.upload_scripts_to_gcs_task manual__2024-04-04T23:10:03.922479+00:00 [running]> on host e5f09ea51a9c
+[2024-04-04T23:11:56.750+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='iamraphson' AIRFLOW_CTX_DAG_ID='IMDB-DAG' AIRFLOW_CTX_TASK_ID='upload_scripts_to_gcs_task' AIRFLOW_CTX_EXECUTION_DATE='2024-04-04T23:10:03.922479+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-04T23:10:03.922479+00:00'
+[2024-04-04T23:11:56.756+0000] {connection.py:269} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-04-04T23:11:56.757+0000] {base.py:83} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2024-04-04T23:11:57.022+0000] {gcs.py:557} INFO - File /opt/***/dags/scripts/init-data-transformation.py uploaded to scripts/init-data-transformation.py in imdb_datalake_radiant-gateway-412001 bucket
+[2024-04-04T23:11:57.031+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=IMDB-DAG, task_id=upload_scripts_to_gcs_task, execution_date=20240404T231003, start_date=20240404T231156, end_date=20240404T231157
+[2024-04-04T23:11:57.063+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-04-04T23:11:57.077+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check
