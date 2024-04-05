@@ -1,19 +1,0 @@
-[2024-04-05T15:24:47.470+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: IMDB-DAG.download-dataset-tasks.download_title.ratings_task manual__2024-04-05T15:24:39.245313+00:00 [queued]>
-[2024-04-05T15:24:47.488+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: IMDB-DAG.download-dataset-tasks.download_title.ratings_task manual__2024-04-05T15:24:39.245313+00:00 [queued]>
-[2024-04-05T15:24:47.488+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
-[2024-04-05T15:24:47.526+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): download-dataset-tasks.download_title.ratings_task> on 2024-04-05 15:24:39.245313+00:00
-[2024-04-05T15:24:47.683+0000] {standard_task_runner.py:60} INFO - Started process 8920 to run task
-[2024-04-05T15:24:47.785+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'IMDB-DAG', 'download-dataset-tasks.download_title.ratings_task', 'manual__2024-04-05T15:24:39.245313+00:00', '--job-id', '198', '--raw', '--subdir', 'DAGS_FOLDER/imdb_dab.py', '--cfg-path', '/tmp/tmpfprdvetq']
-[2024-04-05T15:24:47.823+0000] {standard_task_runner.py:88} INFO - Job 198: Subtask download-dataset-tasks.download_title.ratings_task
-[2024-04-05T15:24:48.144+0000] {task_command.py:423} INFO - Running <TaskInstance: IMDB-DAG.download-dataset-tasks.download_title.ratings_task manual__2024-04-05T15:24:39.245313+00:00 [running]> on host 77371722413f
-[2024-04-05T15:24:48.346+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='iamraphson' AIRFLOW_CTX_DAG_ID='IMDB-DAG' AIRFLOW_CTX_TASK_ID='download-dataset-tasks.download_title.ratings_task' AIRFLOW_CTX_EXECUTION_DATE='2024-04-05T15:24:39.245313+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-05T15:24:39.245313+00:00'
-[2024-04-05T15:24:48.356+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
-[2024-04-05T15:24:48.370+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'curl --create-dirs -o /opt/***/raws/title.ratings.tsv.gz https://datasets.imdbws.com/title.ratings.tsv.gz']
-[2024-04-05T15:24:48.426+0000] {subprocess.py:86} INFO - Output:
-[2024-04-05T15:24:48.482+0000] {subprocess.py:93} INFO -   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-[2024-04-05T15:24:48.483+0000] {subprocess.py:93} INFO -                                  Dload  Upload   Total   Spent    Left  Speed
-[2024-04-05T15:24:49.667+0000] {subprocess.py:93} INFO -   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 53 6982k   53 3749k    0     0  4364k      0  0:00:01 --:--:--  0:00:01 4365k100 6982k  100 6982k    0     0  6149k      0  0:00:01  0:00:01 --:--:-- 6157k
-[2024-04-05T15:24:49.823+0000] {subprocess.py:97} INFO - Command exited with return code 0
-[2024-04-05T15:24:50.167+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=IMDB-DAG, task_id=download-dataset-tasks.download_title.ratings_task, execution_date=20240405T152439, start_date=20240405T152447, end_date=20240405T152450
-[2024-04-05T15:24:50.615+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
-[2024-04-05T15:24:51.038+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check
