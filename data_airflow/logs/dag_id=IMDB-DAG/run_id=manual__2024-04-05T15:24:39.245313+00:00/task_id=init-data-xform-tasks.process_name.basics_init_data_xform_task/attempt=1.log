@@ -12,3 +12,7 @@
 [2024-04-05T15:28:13.795+0000] {base.py:83} INFO - Using connection ID 'google_cloud_default' for task execution.
 [2024-04-05T15:28:14.240+0000] {dataproc.py:2562} INFO - Job bf755d8c-d062-4ef0-8356-eb454a150df5 submitted successfully.
 [2024-04-05T15:28:14.288+0000] {dataproc.py:2596} INFO - Waiting for job bf755d8c-d062-4ef0-8356-eb454a150df5 to complete
+[2024-04-05T15:33:46.193+0000] {dataproc.py:2600} INFO - Job bf755d8c-d062-4ef0-8356-eb454a150df5 completed successfully.
+[2024-04-05T15:33:46.339+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=IMDB-DAG, task_id=init-data-xform-tasks.process_name.basics_init_data_xform_task, execution_date=20240405T152439, start_date=20240405T152812, end_date=20240405T153346
+[2024-04-05T15:33:46.466+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-04-05T15:33:46.570+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check
