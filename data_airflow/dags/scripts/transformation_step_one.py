@@ -28,13 +28,13 @@ title_ratings_df.createOrReplaceTempView('title_ratings_data')
 
 facts_movies_df = spark.sql(
 """
-with tr as (
+WITH tr AS (
     SELECT
         *
     FROM
       title_ratings_data
 ),
-tb as (
+tb AS (
     SELECT
         *
     FROM
@@ -66,12 +66,12 @@ facts_movies_df.createOrReplaceTempView('facts_movies_data')
 
 dim_genres_df = spark.sql(
 """
-with fm as (
+WITH fm AS (
     SELECT
         *
     FROM facts_movies_data
 ),
-fm_genre as (
+fm_genre AS (
     SELECT
         tconst,
         EXPLODE(SPLIT(genres, ',')) AS genre

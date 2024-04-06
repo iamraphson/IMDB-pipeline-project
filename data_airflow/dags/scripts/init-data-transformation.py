@@ -89,7 +89,6 @@ def datasetRevamp(selected_data, df):
             .withColumnRenamed('knownForTitles', 'known_for_titles')
 
     elif selected_data == 'title_basics':
-        #print(df.select("titleType").distinct().show())
         return df.withColumnRenamed('titleType', 'title_type') \
             .withColumnRenamed('primaryTitle', 'primary_title') \
             .withColumnRenamed('originalTitle', 'original_title') \
@@ -118,7 +117,7 @@ def datasetRevamp(selected_data, df):
 
 def replaceSplashNWithNone(df):
     for column in df.columns:
-        df = df.withColumn(column, F.when(df[column] == "\\N", None).otherwise(df[column]))
+        df = df.withColumn(column, F.when(df[column] == '\\N', None).otherwise(df[column]))
 
     return df
 
@@ -144,16 +143,12 @@ spark = SparkSession.builder \
 
 spark.conf.set('temporaryGcsBucket', 'dataproc-temp-us-west1-475254441817-u7kv6jeo')
 
-dataset_df = spark.read.option("delimiter", "\t") \
-    .option("header", "true") \
+dataset_df = spark.read.option('delimiter', '\t') \
+    .option('header', 'true') \
     .csv(src_input, schema=schema)
 
-print(dataset_df.show(5))
 
 dataset_df = datasetRevamp(selected_data, dataset_df)
 dataset_df = replaceSplashNWithNone(dataset_df)
-
-print('After revamp')
-print(dataset_df.show(5))
 
 dataset_df.repartition(20).write.parquet(dest_output, mode='overwrite')
