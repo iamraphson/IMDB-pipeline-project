@@ -1,6 +1,7 @@
 import logging
 import os
 from airflow import DAG
+import datetime as dt
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.bash import BashOperator
 from airflow.utils.task_group import TaskGroup
@@ -13,7 +14,7 @@ from airflow.utils.trigger_rule import TriggerRule
 default_args = {
     'owner': 'iamraphson',
     'depends_on_past': False,
-    'retries': 0
+    'retries': 2
 }
 
 AIRFLOW_HOME = os.environ.get('AIRFLOW_HOME', '/opt/airflow/')
@@ -39,7 +40,8 @@ with DAG(
     'IMDB-DAG',
     default_args=default_args,
     tags=['IMDB-DAG'],
-    schedule_interval=None #0 13 * * *
+    schedule_interval='0 13 * * *',
+    start_date=dt.datetime.today()
 ) as dag:
     start_task = DummyOperator(task_id='start_task', dag=dag)
 
