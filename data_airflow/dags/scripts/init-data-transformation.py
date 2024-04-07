@@ -97,7 +97,14 @@ def datasetRevamp(selected_data, df):
             .withColumnRenamed('endYear', 'end_year') \
             .withColumnRenamed('runtimeMinutes', 'runtime_minutes') \
             .withColumn('imdb_link', F.concat(F.lit('https://www.imdb.com/title/'), F.col('tconst'))) \
-            .filter(F.col('title_type').isin(['movie', 'tvSeries', 'tvMiniSeries', 'tvMovie', 'video']))
+            .filter(F.col('title_type').isin(['movie', 'tvSeries', 'tvMiniSeries', 'tvMovie', 'video'])) \
+            .withColumn('title_type',  F.when(F.col('title_type') == 'movie', 'Movie')
+                .when(F.col('title_type') == 'tvSeries', 'TvSeries')
+                .when(F.col('title_type') == 'tvMiniSeries', 'TvMiniSeries')
+                .when(F.col('title_type') == 'tvMovie', 'TvMovie')
+                .when(F.col('title_type') == 'video', 'Video')
+                .otherwise(F.col('title_type'))
+            )
     elif selected_data == 'title_principals':
         return df.select('tconst', 'ordering', 'nconst', 'category', 'characters') \
             .filter(df['category'].like('act%'))
@@ -126,6 +133,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--src_input', required=True)
 parser.add_argument('--selected_data', required=True)
 parser.add_argument('--dest_output', required=True)
+parser.add_argument('--spark_tmp_bucket', required=True)
 
 args = parser.parse_args()
 
@@ -141,7 +149,7 @@ spark = SparkSession.builder \
         .appName('init-data-transformation') \
         .getOrCreate()
 
-spark.conf.set('temporaryGcsBucket', 'dataproc-temp-us-west1-475254441817-u7kv6jeo')
+spark.conf.set('temporaryGcsBucket', args.spark_tmp_bucket)
 
 dataset_df = spark.read.option('delimiter', '\t') \
     .option('header', 'true') \

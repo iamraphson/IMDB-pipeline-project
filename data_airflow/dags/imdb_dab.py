@@ -22,19 +22,20 @@ GCP_IMDB_BUCKET = os.environ.get('GCP_IMDB_BUCKET')
 GCP_IMDB_WH_DATASET = os.environ.get('GCP_IMDB_WH_DATASET')
 GCP_PROJECT_ID = os.environ.get('GCP_PROJECT_ID')
 GCP_PROJECT_REGION = os.environ.get('GCP_PROJECT_REGION', 'us-west1')
+GCP_IMDB_DATAPROC_TEMP_BUCKET = os.environ.get('GCP_IMDB_DATAPROC_TEMP_BUCKET', 'dataproc-temp-us-west1-475254441817-u7kv6jeo')
 download_path = f'{AIRFLOW_HOME}/raws/'
 scripts_path = f'{AIRFLOW_HOME}/dags/scripts/'
 INIT_DATA_XFORM_URI=f'gs://{GCP_IMDB_BUCKET}/scripts/init-data-transformation.py'
 XFORM_STEP_ONE_URI=f'gs://{GCP_IMDB_BUCKET}/scripts/transformation_step_one.py'
 
 imdb_datasets = {
-    "name.basics": "name_basics",
-    "title.akas": "title_akas",
-    "title.basics": "title_basics",
-    "title.crew": "title_crew",
-    "title.episode": "title_episode",
-    "title.principals": "title_principals",
-    "title.ratings": "title_ratings",
+    'name.basics': 'name_basics',
+    'title.akas': 'title_akas',
+    'title.basics': 'title_basics',
+    'title.crew': 'title_crew',
+    'title.episode': 'title_episode',
+    'title.principals': 'title_principals',
+    'title.ratings': 'title_ratings',
 }
 with DAG(
     'IMDB-DAG',
@@ -73,17 +74,18 @@ with DAG(
     with TaskGroup('init-data-xform-tasks') as init_data_xform_task:
         for key, value  in imdb_datasets.items():
             init_data_xform_job = {
-                "reference": {"project_id": GCP_PROJECT_ID},
-                "placement": {"cluster_name": f'imdb-spark-cluster-{GCP_PROJECT_ID}'},
-                "pyspark_job": {
-                    "main_python_file_uri": INIT_DATA_XFORM_URI,
-                    "jar_file_uris": [
-                        "https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-hadoop3-latest.jar",
+                'reference': {'project_id': GCP_PROJECT_ID},
+                'placement': {'cluster_name': f'imdb-spark-cluster-{GCP_PROJECT_ID}'},
+                'pyspark_job': {
+                    'main_python_file_uri': INIT_DATA_XFORM_URI,
+                    'jar_file_uris': [
+                        'https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-hadoop3-latest.jar',
                     ],
-                    "args": [
-                        f"--src_input=gs://{GCP_IMDB_BUCKET}/raws/{key}.tsv.gz",
-                        f"--selected_data={value}",
-                        f"--dest_output=gs://{GCP_IMDB_BUCKET}/pq/{value}",
+                    'args': [
+                        f'--src_input=gs://{GCP_IMDB_BUCKET}/raws/{key}.tsv.gz',
+                        f'--selected_data={value}',
+                        f'--dest_output=gs://{GCP_IMDB_BUCKET}/pq/{value}',
+                        f'--spark_tmp_bucket={GCP_IMDB_DATAPROC_TEMP_BUCKET}',
                     ]
                 }
             }
@@ -104,21 +106,22 @@ with DAG(
         project_id=GCP_PROJECT_ID,
         trigger_rule=TriggerRule.ALL_DONE,
         job={
-            "reference": {"project_id": GCP_PROJECT_ID},
-            "placement": {"cluster_name": f'imdb-spark-cluster-{GCP_PROJECT_ID}'},
-            "pyspark_job": {
-                "main_python_file_uri": XFORM_STEP_ONE_URI,
-                "jar_file_uris": [
-                    "https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-hadoop3-latest.jar",
-                    "gs://spark-lib/bigquery/spark-bigquery-latest_2.12.jar"
+            'reference': {'project_id': GCP_PROJECT_ID},
+            'placement': {'cluster_name': f'imdb-spark-cluster-{GCP_PROJECT_ID}'},
+            'pyspark_job': {
+                'main_python_file_uri': XFORM_STEP_ONE_URI,
+                'jar_file_uris': [
+                    'https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-hadoop3-latest.jar',
+                    'gs://spark-lib/bigquery/spark-bigquery-latest_2.12.jar'
                 ],
-                "args": [
-                    f"--title_basics_src=gs://{GCP_IMDB_BUCKET}/pq/title_basics/*",
-                    f"--title_ratings_src=gs://{GCP_IMDB_BUCKET}/pq/title_ratings/*",
-                    f"--fact_movies_pq_dest=gs://{GCP_IMDB_BUCKET}/pq/fact_movies",
-                    f"--fact_genres_pq_dest=gs://{GCP_IMDB_BUCKET}/pq/fact_genres",
-                    f"--fact_movies_table_dest={GCP_IMDB_WH_DATASET}.facts_movies",
-                    f"--dim_genres_table_dest={GCP_IMDB_WH_DATASET}.dim_genres",
+                'args': [
+                    f'--title_basics_src=gs://{GCP_IMDB_BUCKET}/pq/title_basics/*',
+                    f'--title_ratings_src=gs://{GCP_IMDB_BUCKET}/pq/title_ratings/*',
+                    f'--fact_movies_pq_dest=gs://{GCP_IMDB_BUCKET}/pq/fact_movies',
+                    f'--fact_genres_pq_dest=gs://{GCP_IMDB_BUCKET}/pq/fact_genres',
+                    f'--fact_movies_table_dest={GCP_IMDB_WH_DATASET}.facts_movies',
+                    f'--dim_genres_table_dest={GCP_IMDB_WH_DATASET}.dim_genres',
+                    f'--spark_tmp_bucket={GCP_IMDB_DATAPROC_TEMP_BUCKET}',
                 ]
             }
         }

@@ -10,15 +10,16 @@ parser.add_argument('--fact_movies_pq_dest', required=True)
 parser.add_argument('--fact_genres_pq_dest', required=True)
 parser.add_argument('--fact_movies_table_dest', required=True)
 parser.add_argument('--dim_genres_table_dest', required=True)
+parser.add_argument('--spark_tmp_bucket', required=True)
 
 args = parser.parse_args()
 
 spark = SparkSession.builder \
-        .appName('init-data-transformation') \
+        .appName('transformation-step-one') \
         .getOrCreate()
 
 
-spark.conf.set('temporaryGcsBucket', 'dataproc-temp-us-west1-475254441817-u7kv6jeo')
+spark.conf.set('temporaryGcsBucket', args.spark_tmp_bucket)
 
 title_basics_df = spark.read.parquet(args.title_basics_src)
 title_basics_df.createOrReplaceTempView('title_basics_data')

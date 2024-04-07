@@ -22,6 +22,7 @@ x-airflow-common: &airflow-common
     GCP_IMDB_BUCKET: "$GCP_IMDB_BUCKET"
     GCP_PROJECT_REGION: "$GCP_PROJECT_REGION"
     GCP_IMDB_WH_DATASET: "$GCP_IMDB_WH_DATASET"
+    GCP_IMDB_DATAPROC_TEMP_BUCKET: "$GCP_IMDB_DATAPROC_TEMP_BUCKET"
     GOOGLE_APPLICATION_CREDENTIALS: "/.google/credentials/dezoomcamp-2024.json"
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/data_airflow/dags:/opt/airflow/dags
