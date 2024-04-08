@@ -76,7 +76,7 @@ The cloud infrastructure has been established using Terraform, providing a scala
   - `AIRFLOW_UID`. The default value is 50000
   - `GCP_PROJECT_ID`. This should be set from [Create a Google Cloud Project](#create-a-google-cloud-project) section
   - `GCP_IMDB_BUCKET=imdb_datalake_<GCP project id>`
-  - `GCP_PROJECT_REGION=`. The location where the Data Proc is deployed
+  - `GCP_PROJECT_REGION`. The location where the Data Proc is deployed
   - `GCP_IMDB_WH_DATASET=imdb_analytics`
   - `GCP_IMDB_DATAPROC_TEMP_BUCKET`. Review the Google Cloud Storage (GCS) section in the console to find the temp bucket name for Data Proc. This is the value you need here.
 - Run `docker-compose up`.
